@@ -211,7 +211,12 @@ main h2 {
   height: 45px;
   font-size: 18px;
 }
-
+#message-error {
+  font-weight: 700;
+  color: red;
+  font-size: 1.3rem;
+  text-align: center;
+}
 .password {
   margin: auto;
   width: 379px;

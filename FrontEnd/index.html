@@ -8,11 +8,77 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="./assets/index.js" defer></script>
+	
 </head>
 <body>
+
+	<div class="modale-container">
+
+		<div class="overlay modale-trigger"></div>   
+
+	   <div class="modale">
+
+		   <i class="fa-solid fa-xmark modale-trigger"></i>
+		   
+		   <h2>Galerie photo</h2>
+		   
+		   <div class="mini_pictures">
+			   
+			   
+		   </div>
+		   
+		   
+		   <div class="edit-gallery">
+
+			   <button id="edit-trigger">Ajouter une photo</button>
+			   <span>Supprimer la galerie</span>
+		   </div>
+		   
+	   </div>
+
+   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <header>
+
 	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 	<nav>
 		<ul>
@@ -37,8 +103,9 @@
 	</section>
 	<section id="portfolio">
 		
-		<h2>Mes Projets</h2>
 
+				<h2>Mes Projets</h2>
+				
 		<div class="filters">
 			<button>Tous</button>
 	
@@ -72,5 +139,6 @@
 		</ul>
 	</nav>
 </footer>
+<script src="./assets/admin.js"></script>
 </body>
 </html>

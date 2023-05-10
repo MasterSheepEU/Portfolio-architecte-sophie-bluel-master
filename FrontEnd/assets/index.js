@@ -113,9 +113,91 @@ const creatCat = (categories) => {
 
     buttons[3].addEventListener('click', () => {
         filterActive(3)
+        console.log('test');
     })
 
 };
 
 fetchCategories(creatCat);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const miniPictures = document.querySelector("body > div.modale-container > div.modale > div.mini_pictures")
+
+
+const creatFiguresModale = (items) => {
+    for (const item of items) {
+
+        if (item.categoryId === indexFilter || indexFilter === 0) {
+
+            const htmlContentWork = `
+            
+            <article class="work-img">
+                <i class="fa-solid fa-arrows-up-down-left-right"></i>
+                <i class="fa-solid fa-trash-can"></i>
+                <img src=${item.imageUrl} alt=${item.title}>
+                <span>éditer</span>
+            </article>
+
+            `;
+
+            miniPictures.insertAdjacentHTML("beforeend", htmlContentWork);
+
+        }
+    }
+};
+
+fetchWorks(creatFiguresModale)
+
+
+const modale = document.querySelector("body > div.modale-container")
+const btnTrigger = document.querySelectorAll(".modale-trigger")
+
+
+const modaleToggle = () => {
+    modale.classList.toggle("active")
+}
+
+
+btnTrigger.forEach(trigger => trigger.addEventListener('click', modaleToggle))
 
