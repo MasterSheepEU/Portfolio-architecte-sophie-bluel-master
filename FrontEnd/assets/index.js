@@ -124,42 +124,7 @@ fetchCategories(creatCat);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* intégration image à la modale */
 
 
 const miniPictures = document.querySelector("body > div.modale-container > div.modale > div.mini_pictures")
@@ -174,7 +139,7 @@ const creatFiguresModale = (items) => {
             
             <article class="work-img">
                 <i class="fa-solid fa-arrows-up-down-left-right"></i>
-                <i class="fa-solid fa-trash-can"></i>
+                <i class="fa-solid fa-trash-can ${item.id}"></i>
                 <img src=${item.imageUrl} alt=${item.title}>
                 <span>éditer</span>
             </article>
@@ -190,6 +155,9 @@ const creatFiguresModale = (items) => {
 fetchWorks(creatFiguresModale)
 
 
+
+/*toggle de la modale */
+
 const modale = document.querySelector("body > div.modale-container")
 const btnTrigger = document.querySelectorAll(".modale-trigger")
 
@@ -201,3 +169,33 @@ const modaleToggle = () => {
 
 btnTrigger.forEach(trigger => trigger.addEventListener('click', modaleToggle))
 
+
+/*Passage modale à l'autre */
+
+const btnEdit = document.querySelector("#edit-trigger")
+const modaleEdit = document.querySelector("body > div.modale-container-edit")
+
+btnEdit.addEventListener('click', () => {
+    modale.classList.remove('active')
+    modaleEdit.classList.add('active')
+})
+
+const arrowReturn = document.querySelector(".fa-arrow-left")
+
+arrowReturn.addEventListener('click', () => {
+    modaleEdit.classList.remove('active')
+    modale.classList.add('active')
+})
+
+
+
+
+/* Systéme fermeture 2éme modale */
+
+const btnModaleClose = document.querySelectorAll('.modale-close')
+
+const modaleClose = () => {
+    modaleEdit.classList.remove('active')
+}
+
+btnModaleClose.forEach(triggerClose => triggerClose.addEventListener('click', modaleClose))

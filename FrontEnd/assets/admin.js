@@ -96,67 +96,38 @@ btnLogin.addEventListener('click', () => {
 })
 
 
+const deleteElementDOM = () => {
+
+    const modale = document.querySelector("body > div.modale-container")
+
+    modale.addEventListener('click', (e) => {
+
+        let workId = e.target.classList[2]
+        const deleteUrl = `http://localhost:5678/api/works/${workId}`
 
 
+        if (e.target.classList.contains('fa-trash-can')) {
 
+            fetch(deleteUrl, {
+                method: 'DELETE',
+                body: 1,
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.token}`,
+                }
+            })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-let workId = ""
-
-
-
-const deleteUrl = `http://localhost:5678/api/works/${workId}`
-
-
-const deleteWork = () => {
-
-    fetch(deleteUrl, {
-        method: 'DELETE',
-        body: 1,
-        headers: {
-            'Authorization': `Bearer ${sessionStorage.token}`,
+            e.target.parentNode.remove();
         }
-    })
 
+    })
 }
 
 
+deleteElementDOM()
 
 
+const btnModale = document.querySelector("#edit-trigger")
 
+btnModale.addEventListener('click', () => {
+    modale.classList.remove('active')
+})
