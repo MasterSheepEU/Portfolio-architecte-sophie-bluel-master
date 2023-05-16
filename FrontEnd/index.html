@@ -10,7 +10,7 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="./assets/style.css">
-	<script src="./assets/index.js" defer></script>
+	<script src="./assets/JavaScript/index.js" defer></script>
 	
 </head>
 <body>
@@ -53,28 +53,31 @@
 		<i class="fa-solid fa-xmark modale-close"></i>
 		
 		<h2>Ajout photo</h2>
-		
+
+	<form action="" class="form-send">
+
 		<div class="container-add">
 			<i class="fa-sharp fa-regular fa-image"></i>
 			<label for="file-selected" id="file-label">+ Ajouter photo</label>
-			<input type="file" id="file-selected">
+			<input type="file" id="file-selected" name="image"
+			accept="image/*,.png,.jpg,.gif">
 			<p>jpg, png : 4mo max</p>
 		</div>
-	
+		
 		
 		<div class="title-choise">
 			<label for="title-work">Titre</label>
-			<input type="text" id="title-work">
+			<input type="text" id="title-work" name="title">
 		</div>
 		
 		
 		<div class="categorie-choise">
 			<label for="cat">Catégorie</label>
-			<select id="cat">
+			<select id="cat" name="category">
 				<option value=""></option>
-				<option value="Bar & Restaurant">Bar & Restaurant</option>
-				<option value="Objet">Objet</option>
-				<option value="Appartement">Appartement</option>
+				<option value="3">Bar & Restaurant</option>
+				<option value="1">Objet</option>
+				<option value="2">Appartement</option>
 			</select>
 		</div>
 		
@@ -82,31 +85,9 @@
 			<label for="valid">Valider</label>
 			<input type="submit" id="valid">
 		</div>
+	</form>	
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -149,7 +130,7 @@
 				<h2>Mes Projets</h2>
 				
 		<div class="filters">
-			<button>Tous</button>
+			<button class="filters-btn">Tous</button>
 	
 		</div>
 
@@ -181,6 +162,6 @@
 		</ul>
 	</nav>
 </footer>
-<script src="./assets/admin.js"></script>
+<script src="./assets/JavaScript/admin.js"></script>
 </body>
 </html>

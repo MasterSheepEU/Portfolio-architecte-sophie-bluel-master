@@ -9,7 +9,6 @@ const filters = document.querySelector(".filters");
 let indexFilter = 0
 
 
-
 /* Fonction nettoyage pour les filtres */
 
 const swipe = () => {
@@ -87,7 +86,7 @@ const creatCat = (categories) => {
     for (const categorie of categories) {
 
         const htmlContentCate = `
-        <button>${categorie.name}</button>
+        <button class= filters-btn>${categorie.name}</button>
         `;
 
         filters.insertAdjacentHTML("beforeend", htmlContentCate);
@@ -95,33 +94,20 @@ const creatCat = (categories) => {
 
     /* Déclarations des bouttons des filtres */
 
-    const buttons = document.querySelectorAll('button')
+    const buttonsFilters = document.querySelectorAll('.filters-btn')
 
     /* Event Click pour les filtres */
 
-    buttons[0].addEventListener('click', () => {
-        filterActive(0)
-    })
+    for (let i = 0; i < 4; i++) {
 
-    buttons[1].addEventListener('click', () => {
-        filterActive(1)
-    })
-
-    buttons[2].addEventListener('click', () => {
-        filterActive(2)
-    })
-
-    buttons[3].addEventListener('click', () => {
-        filterActive(3)
-        console.log('test');
-    })
+        buttonsFilters[i].addEventListener('click', () => {
+            filterActive(i)
+        })
+    }
 
 };
 
 fetchCategories(creatCat);
-
-
-
 
 
 /* intégration image à la modale */
@@ -199,3 +185,5 @@ const modaleClose = () => {
 }
 
 btnModaleClose.forEach(triggerClose => triggerClose.addEventListener('click', modaleClose))
+
+

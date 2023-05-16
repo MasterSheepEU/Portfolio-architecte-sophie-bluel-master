@@ -1,3 +1,6 @@
+"use strict";
+
+
 const btnLogin = document.querySelector("body > header > nav > ul > a > li")
 const headerGlobal = document.querySelector("body > header")
 
@@ -96,11 +99,14 @@ btnLogin.addEventListener('click', () => {
 })
 
 
+
+
 const deleteElementDOM = () => {
 
     const modale = document.querySelector("body > div.modale-container")
 
     modale.addEventListener('click', (e) => {
+
 
         let workId = e.target.classList[2]
         const deleteUrl = `http://localhost:5678/api/works/${workId}`
@@ -116,12 +122,12 @@ const deleteElementDOM = () => {
                 }
             })
 
-            e.target.parentNode.remove();
+            e.target.parentElement.remove();
+            alert('Projet supprimé')
         }
 
     })
 }
-
 
 deleteElementDOM()
 
@@ -131,3 +137,54 @@ const btnModale = document.querySelector("#edit-trigger")
 btnModale.addEventListener('click', () => {
     modale.classList.remove('active')
 })
+
+
+
+
+
+
+
+
+const formGlobal = document.querySelector('.form-send')
+
+
+formGlobal.addEventListener('submit', (e) => {
+
+    e.preventDefault()
+
+    const image = document.getElementById('file-selected').files[0];
+    const title = document.getElementById('title-work').value;
+    const category = document.getElementById('cat').value;
+
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("title", title);
+    formData.append("category", category);
+
+
+    const addWork = async (formData) => {
+        try {
+            const response = await fetch('http://localhost:5678/api/works', {
+                method: 'POST',
+                headers: {
+                    accept: "application/json",
+                    Authorization: `Bearer ${sessionStorage.token}`,
+                },
+                body: formData,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    if (image === "" || title === "" || category === "") {
+
+        alert('Veuillez compléter tous les champs')
+    } else {
+        alert('Projet envoyé')
+        addWork(formData)
+    }
+
+})
+
+

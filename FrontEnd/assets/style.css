@@ -129,6 +129,7 @@ table {
 }
 /** end reset css**/
 body {
+  overflow-x: hidden;
   max-width: 1140px;
   margin: auto;
   font-family: "Work Sans";
@@ -318,6 +319,8 @@ footer nav ul {
 
 .gallery_edit {
   width: 100%;
+  margin-left: 40%;
+  text-align: center;
   display: flex;
   align-items: center;
 }
@@ -380,9 +383,9 @@ footer nav ul {
 .modale {
   opacity: 0;
   position: absolute;
-  top: 60%;
-  left: 29.7%;
   background: #fff;
+  top: 50%;
+  left: 50%;
   width: 630px;
   height: 731px;
   border-radius: 5px;
@@ -405,6 +408,12 @@ footer nav ul {
   display: flex;
   flex-wrap: wrap;
   margin: 0 102px;
+}
+
+.picture_edit {
+  cursor: pointer;
+  margin-left: 10%;
+  margin-top: 5px;
 }
 
 .work-img {
