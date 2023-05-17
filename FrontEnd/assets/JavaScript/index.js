@@ -187,3 +187,17 @@ const modaleClose = () => {
 btnModaleClose.forEach(triggerClose => triggerClose.addEventListener('click', modaleClose))
 
 
+
+
+const imagePreview = document.getElementById('#file-selected')
+
+imagePreview.addEventListener('change', previewFile);
+
+const previewFile = () => {
+
+}
+
+
+
+
+

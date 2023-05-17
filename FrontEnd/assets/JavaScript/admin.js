@@ -107,7 +107,6 @@ const deleteElementDOM = () => {
 
     modale.addEventListener('click', (e) => {
 
-
         let workId = e.target.classList[2]
         const deleteUrl = `http://localhost:5678/api/works/${workId}`
 
@@ -123,6 +122,10 @@ const deleteElementDOM = () => {
             })
 
             e.target.parentElement.remove();
+
+            swipe()
+            fetchWorks(creatFigures)
+
             alert('Projet supprimé')
         }
 
@@ -139,14 +142,8 @@ btnModale.addEventListener('click', () => {
 })
 
 
-
-
-
-
-
-
 const formGlobal = document.querySelector('.form-send')
-
+const btnAddWork = document.querySelector("body > div.modale-container-edit > div.modale-edit > form > div.send > label")
 
 formGlobal.addEventListener('submit', (e) => {
 
@@ -178,11 +175,17 @@ formGlobal.addEventListener('submit', (e) => {
     }
 
     if (image === "" || title === "" || category === "") {
-
         alert('Veuillez compléter tous les champs')
+
+    } else if (btnAddWork.classList.contains("grey-color")) {
+        btnAddWork.classList.remove('grey-color')
+        btnAddWork.classList.add('green-color')
+        return;
+
     } else {
         alert('Projet envoyé')
         addWork(formData)
+
     }
 
 })

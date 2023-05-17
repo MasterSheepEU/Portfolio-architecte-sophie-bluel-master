@@ -624,14 +624,21 @@ footer nav ul {
   text-align: center;
   display: block;
   width: 237px;
-  height: 36px;
   cursor: pointer;
-  background: #a7a7a7;
-  color: #ffffff;
   padding: 10px;
   border-radius: 50px;
   transition: 0.5s;
   user-select: none;
+}
+
+.grey-color {
+  background: #a7a7a7;
+  color: #ffffff;
+}
+
+.green-color {
+  background: #1d6154;
+  color: #ffffff;
 }
 
 .send label:before {
