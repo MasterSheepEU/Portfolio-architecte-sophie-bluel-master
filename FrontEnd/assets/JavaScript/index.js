@@ -110,7 +110,7 @@ const creatCat = (categories) => {
 fetchCategories(creatCat);
 
 
-/* intégration image à la modale */
+/* Intégration image à la modale */
 
 
 const miniPictures = document.querySelector("body > div.modale-container > div.modale > div.mini_pictures")
@@ -142,7 +142,7 @@ fetchWorks(creatFiguresModale)
 
 
 
-/*toggle de la modale */
+/*Toggle de la modale */
 
 const modale = document.querySelector("body > div.modale-container")
 const btnTrigger = document.querySelectorAll(".modale-trigger")
@@ -187,17 +187,56 @@ const modaleClose = () => {
 btnModaleClose.forEach(triggerClose => triggerClose.addEventListener('click', modaleClose))
 
 
+/* File Reader */
+
+const btnAddImage = document.querySelector("#file-selected")
+
+btnAddImage.addEventListener("change", previewFile);
 
 
-const imagePreview = document.getElementById('#file-selected')
+function previewFile() {
 
-imagePreview.addEventListener('change', previewFile);
+    const fileExtensionRegex = /\.(jpg|png)$/i;
 
-const previewFile = () => {
+    if (this.files.length === 0 || !fileExtensionRegex.test(this.files[0].name)) {
+        return;
+    }
+
+    const file = this.files[0];
+    const fileReader = new FileReader();
+
+    fileReader.readAsDataURL(file);
+
+    fileReader.addEventListener('load', (e) => displayImage(e, file));
 
 }
 
 
 
+function displayImage(e, file) {
+
+    document.querySelector("body > div.modale-container-edit.active > div.modale-edit > form > div.container-add > i").remove()
+
+    document.querySelector("#file-label").remove()
+
+    document.querySelector("body > div.modale-container-edit > div.modale-edit > form > div.container-add > p").remove()
 
 
+
+
+    const containerImg = document.querySelector("body > div.modale-container-edit > div.modale-edit > form > div.container-add")
+
+
+
+    const displayImage = `   
+    <figure >
+       
+        <img src=${e.target.result} class=imgScale>
+        
+    </figure>
+    `;
+
+
+    containerImg.insertAdjacentHTML('afterbegin', displayImage)
+
+}

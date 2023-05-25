@@ -347,6 +347,7 @@ footer nav ul {
   visibility: hidden;
   position: fixed;
   border-radius: 10px;
+  margin-left: -27.5%;
   width: 100vw;
   height: 100vh;
   transition: visibility 0.4s;
@@ -384,12 +385,11 @@ footer nav ul {
   opacity: 0;
   position: absolute;
   background: #fff;
-  top: 50%;
-  left: 50%;
+  top: 25%;
+  left: 37%;
   width: 630px;
   height: 731px;
   border-radius: 5px;
-  transform: translate(-50%, -50%);
   transition: opacity 0.4s ease-out;
 }
 
@@ -493,6 +493,7 @@ footer nav ul {
   visibility: hidden;
   position: fixed;
   border-radius: 10px;
+  margin-left: -27.5%;
   width: 100vw;
   height: 100vh;
   transition: visibility 0.4s;
@@ -506,13 +507,12 @@ footer nav ul {
 .modale-edit {
   opacity: 0;
   position: absolute;
-  top: 60%;
-  left: 29.7%;
+  top: 25%;
+  left: 37%;
   background: #fff;
   width: 630px;
   height: 670px;
   border-radius: 5px;
-  transform: translate(-50%, -50%);
 }
 
 .modale-container-edit.active .modale-edit {
@@ -649,4 +649,8 @@ footer nav ul {
   left: -39%;
   width: 420px;
   height: 1px;
+}
+
+.imgScale {
+  height: 20.5%;
 }

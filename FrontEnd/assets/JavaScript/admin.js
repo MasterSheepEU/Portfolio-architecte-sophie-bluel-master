@@ -12,6 +12,8 @@ const porteFolio = document.querySelector("#portfolio")
 
 const filtersRemove = document.querySelector("#portfolio > div.filters")
 
+/* Ajout bandeau noir pour l'édition */
+
 const editPost = () => {
     const editPost = `
     
@@ -24,6 +26,7 @@ const editPost = () => {
     headerGlobal.insertAdjacentHTML("beforebegin", editPost)
 }
 
+/* Ajout bouton édition description */
 
 const editArticle = () => {
     const editArticle = `
@@ -37,6 +40,7 @@ const editArticle = () => {
 
 }
 
+/* Ajout bouton modification de la photo*/
 
 const editPicture = () => {
     const editPicture = `
@@ -51,6 +55,7 @@ const editPicture = () => {
 
 }
 
+/*Ajout du bouton pour l'édition de la galerie */
 
 const editGallery = () => {
 
@@ -75,6 +80,8 @@ const editGallery = () => {
 }
 
 
+/* Appel des fonctions créées précédement si le token est bien enregistrer */
+
 if (sessionStorage.token) {
 
     btnLogin.textContent = "logout"
@@ -92,6 +99,8 @@ if (sessionStorage.token) {
 }
 
 
+/* Ajout de la fonctionnalité de vidange du sessionStorage une fois la déconnexion */
+
 btnLogin.addEventListener('click', () => {
 
     sessionStorage.removeItem('token')
@@ -100,6 +109,8 @@ btnLogin.addEventListener('click', () => {
 
 
 
+
+/* Fonction pour la suppresion des travaux depuis la modale pour la galerie */
 
 const deleteElementDOM = () => {
 
@@ -133,6 +144,8 @@ const deleteElementDOM = () => {
 }
 
 deleteElementDOM()
+
+
 
 
 const btnModale = document.querySelector("#edit-trigger")
@@ -189,5 +202,14 @@ formGlobal.addEventListener('submit', (e) => {
     }
 
 })
+
+
+
+
+
+
+
+
+
 
 
