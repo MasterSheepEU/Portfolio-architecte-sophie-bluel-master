@@ -4,7 +4,7 @@
 
 const workRecover = "http://localhost:5678/api/works";
 const catRecover = "http://localhost:5678/api/categories";
-const gallery = document.querySelector(".gallery");
+const gallery = document.getElementById('gallery')
 const filters = document.querySelector(".filters");
 let indexFilter = 0
 
@@ -12,7 +12,7 @@ let indexFilter = 0
 /* Fonction nettoyage pour les filtres */
 
 const swipe = () => {
-    const works = document.querySelectorAll(".gallery > figure")
+    const works = document.querySelectorAll("#gallery > figure")
     works.forEach((work) => {
         work.remove()
     })
@@ -86,7 +86,7 @@ const creatCat = (categories) => {
     for (const categorie of categories) {
 
         const htmlContentCate = `
-        <button class= filters-btn>${categorie.name}</button>
+        <button class= filters-btn data-id=${categorie.id}>${categorie.name}</button>
         `;
 
         filters.insertAdjacentHTML("beforeend", htmlContentCate);
@@ -98,10 +98,11 @@ const creatCat = (categories) => {
 
     /* Event Click pour les filtres */
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < buttonsFilters.length; i++) {
 
-        buttonsFilters[i].addEventListener('click', () => {
+        buttonsFilters[i].addEventListener('click', (e) => {
             filterActive(i)
+            buttonsFilters[i].classList.remove('active')
         })
     }
 
@@ -212,7 +213,6 @@ function previewFile() {
 }
 
 
-
 function displayImage(e, file) {
 
     document.querySelector("body > div.modale-container-edit.active > div.modale-edit > form > div.container-add > i").remove()
@@ -240,3 +240,5 @@ function displayImage(e, file) {
     containerImg.insertAdjacentHTML('afterbegin', displayImage)
 
 }
+
+

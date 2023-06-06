@@ -19,19 +19,14 @@ const login = async (email, password) => {
         });
 
         if (!response.ok) {
-            const password = document.querySelector("#password");
 
-            const errorMessage = `
-            
-            <div id=message-error>
-            <p>Identifiants incorrects</p>
-            </div >
-            
-            `;
+            const errorMessage = document.getElementById('message-error')
 
-            password.insertAdjacentHTML("afterend", errorMessage);
+            errorMessage.style.display = "block"
+
+
         } else if (response.ok) {
-            document.location.href = "../../FrontEnd/index.html";
+            document.location.href = "../index.html";
         }
 
         return response.json();

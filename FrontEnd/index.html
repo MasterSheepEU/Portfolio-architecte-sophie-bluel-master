@@ -93,22 +93,14 @@
 
 
 
-
-
-
-
-
-
-
-
 <header>
 
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
-			<li>projets</li>
-			<li>contact</li>
-			<a href="./pages/login.html"><li>login</li></a>
+			<a href="#gallery"><li>projets</li></a>
+			<a href="#contact"><li>contact</li></a>
+			<a href="./pages/login.html"><li id="login">login</li></a>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -131,12 +123,12 @@
 				<h2>Mes Projets</h2>
 				
 		<div class="filters">
-			<button class="filters-btn">Tous</button>
+			<button class="filters-btn active" data-id="0">Tous</button>
 	
 		</div>
 
 
-		<div class="gallery">
+		<div id="gallery">
 			
 		</div>
 

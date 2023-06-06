@@ -1,7 +1,7 @@
 "use strict";
 
 
-const btnLogin = document.querySelector("body > header > nav > ul > a > li")
+const btnLogin = document.getElementById("login")
 const headerGlobal = document.querySelector("body > header")
 
 const presentationArticle = document.querySelector("#introduction > article")
@@ -154,9 +154,12 @@ btnModale.addEventListener('click', () => {
     modale.classList.remove('active')
 })
 
-
 const formGlobal = document.querySelector('.form-send')
 const btnAddWork = document.querySelector("body > div.modale-container-edit > div.modale-edit > form > div.send > label")
+
+
+const miniFigure = document.querySelector('.mini_pictures')
+const modaleContainerEdit = document.querySelector('.modale-container-edit')
 
 formGlobal.addEventListener('submit', (e) => {
 
@@ -185,22 +188,37 @@ formGlobal.addEventListener('submit', (e) => {
         } catch (error) {
             console.log(error);
         }
+
+        swipe()
+        fetchWorks(creatFigures)
+        miniFigure.innerHTML = "";
+        fetchWorks(creatFiguresModale)
     }
 
     if (image === "" || title === "" || category === "") {
         alert('Veuillez compléter tous les champs')
 
     } else if (btnAddWork.classList.contains("grey-color")) {
-        btnAddWork.classList.remove('grey-color')
-        btnAddWork.classList.add('green-color')
+
+        btnAddWork.addEventListener("mouseover", () => {
+            btnAddWork.classList.remove('grey-color')
+            btnAddWork.classList.add('green-color')
+        })
+
+
+        // btnAddWork.classList.remove('grey-color')
+        // btnAddWork.classList.add('green-color')
         return;
+
+
+
 
     } else {
         alert('Projet envoyé')
         addWork(formData)
+        modaleContainerEdit.classList.remove('active')
 
     }
-
 })
 
 
