@@ -1,16 +1,17 @@
 "use strict";
 
-
 const btnLogin = document.getElementById("login")
 const headerGlobal = document.querySelector("body > header")
-
 const presentationArticle = document.querySelector("#introduction > article")
 const picture = document.querySelector("#introduction > figure")
-
 const myproject = document.querySelector("#portfolio > h2")
 const porteFolio = document.querySelector("#portfolio")
-
 const filtersRemove = document.querySelector("#portfolio > div.filters")
+const btnModale = document.querySelector("#edit-trigger")
+const formGlobal = document.querySelector('.form-send')
+const btnAddWork = document.querySelector("body > div.modale-container-edit > div.modale-edit > form > div.send > label")
+const miniFigure = document.querySelector('.mini_pictures')
+const modaleContainerEdit = document.querySelector('.modale-container-edit')
 
 /* Ajout bandeau noir pour l'édition */
 
@@ -108,8 +109,6 @@ btnLogin.addEventListener('click', () => {
 })
 
 
-
-
 /* Fonction pour la suppresion des travaux depuis la modale pour la galerie */
 
 const deleteElementDOM = () => {
@@ -119,6 +118,7 @@ const deleteElementDOM = () => {
     modale.addEventListener('click', (e) => {
 
         let workId = e.target.classList[2]
+        console.log(workId);
         const deleteUrl = `http://localhost:5678/api/works/${workId}`
 
 
@@ -134,8 +134,8 @@ const deleteElementDOM = () => {
 
             e.target.parentElement.remove();
 
-            swipe()
-            fetchWorks(creatFigures)
+            cleanGallery()
+            fetchWorks(creatFiguresWork)
 
             alert('Projet supprimé')
         }
@@ -146,20 +146,14 @@ const deleteElementDOM = () => {
 deleteElementDOM()
 
 
-
-
-const btnModale = document.querySelector("#edit-trigger")
-
 btnModale.addEventListener('click', () => {
     modale.classList.remove('active')
 })
 
-const formGlobal = document.querySelector('.form-send')
-const btnAddWork = document.querySelector("body > div.modale-container-edit > div.modale-edit > form > div.send > label")
 
 
-const miniFigure = document.querySelector('.mini_pictures')
-const modaleContainerEdit = document.querySelector('.modale-container-edit')
+/* Fonction d'envois d'un nouveau Work */
+
 
 formGlobal.addEventListener('submit', (e) => {
 
@@ -189,8 +183,8 @@ formGlobal.addEventListener('submit', (e) => {
             console.log(error);
         }
 
-        swipe()
-        fetchWorks(creatFigures)
+        cleanGallery()
+        fetchWorks(creatFiguresWork)
         miniFigure.innerHTML = "";
         fetchWorks(creatFiguresModale)
     }
@@ -204,14 +198,7 @@ formGlobal.addEventListener('submit', (e) => {
             btnAddWork.classList.remove('grey-color')
             btnAddWork.classList.add('green-color')
         })
-
-
-        // btnAddWork.classList.remove('grey-color')
-        // btnAddWork.classList.add('green-color')
         return;
-
-
-
 
     } else {
         alert('Projet envoyé')
