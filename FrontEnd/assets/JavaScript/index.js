@@ -12,9 +12,9 @@ const btnTrigger = document.querySelectorAll(".modale-trigger")
 const btnEdit = document.querySelector("#edit-trigger")
 const modaleEdit = document.querySelector("body > div.modale-container-edit")
 const arrowReturn = document.querySelector(".fa-arrow-left")
-const btnModaleClose = document.querySelectorAll('.modale-close')
-const btnAddImage = document.querySelector("#file-selected")
 const containerAdd = document.querySelector('.container-add')
+const imgPreview = document.querySelector('.imgPreview')
+const imageFile = document.querySelector('.imgScale')
 let indexFilter = 0
 
 
@@ -124,8 +124,14 @@ fetchCategories(creatBtnCat);
 
 /*Toggle de la modale */
 
+
 const modaleToggle = () => {
     modale.classList.toggle("active")
+
+    if (!modaleEdit.classList.contains('active')) {
+        formGlobal.reset()
+    }
+
 }
 
 btnTrigger.forEach(trigger => trigger.addEventListener('click', modaleToggle))
@@ -180,68 +186,6 @@ const creatFiguresModale = (items) => {
 fetchWorks(creatFiguresModale)
 
 
-/* File Reader */
 
-btnAddImage.addEventListener("change", previewFile);
-
-
-function previewFile() {
-
-    const fileExtensionRegex = /\.(jpg|png)$/i;
-
-    if (this.files.length === 0 || !fileExtensionRegex.test(this.files[0].name)) {
-        return;
-    }
-
-    const file = this.files[0];
-    const fileReader = new FileReader();
-
-
-    fileReader.readAsDataURL(file);
-    fileReader.addEventListener('load', (e) => displayImage(e, file));
-
-}
-
-
-function displayImage(e, file) {
-
-    const imgPreview = document.querySelector('.imgPreview')
-
-    /* Suppression de l'espace type d'ajout */
-
-    if (!imgPreview) {
-
-        document.querySelector("body > div.modale-container-edit.active > div.modale-edit > form > div.container-add > i").remove()
-
-        document.querySelector("#file-label").remove()
-
-        document.querySelector("body > div.modale-container-edit > div.modale-edit > form > div.container-add > p").remove()
-
-    }
-
-
-    /* Déclaration du nouvel espace d'ajout et ajout de l'image récupéré avec FileReader */
-
-    const containerImg = document.querySelector("body > div.modale-container-edit > div.modale-edit > form > div.container-add")
-
-    const displayImage = `   
-        <figure class="imgPreview">
-        
-        <label for="file-selected"> <img src=${e.target.result} class=imgScale></label>
-        
-        
-        </figure>
-        `;
-
-    if (!imgPreview) {
-
-        containerImg.insertAdjacentHTML('afterbegin', displayImage)
-
-    } else {
-        imgPreview.remove()
-        containerImg.insertAdjacentHTML('afterbegin', displayImage)
-    }
-
-}
 
 

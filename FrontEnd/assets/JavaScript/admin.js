@@ -12,6 +12,13 @@ const formGlobal = document.querySelector('.form-send')
 const btnAddWork = document.querySelector("body > div.modale-container-edit > div.modale-edit > form > div.send > label")
 const miniFigure = document.querySelector('.mini_pictures')
 const modaleContainerEdit = document.querySelector('.modale-container-edit')
+const titleInput = document.getElementById('title-work')
+const categorySelect = document.getElementById('cat')
+const photoInput = document.getElementById('file-selected')
+const btnModaleClose = document.querySelectorAll('.modale-close')
+const btnAddImage = document.querySelector("#file-selected")
+const newImgArea = document.querySelector('.new-picture')
+
 
 /* Ajout bandeau noir pour l'édition */
 
@@ -118,7 +125,6 @@ const deleteElementDOM = () => {
     modale.addEventListener('click', (e) => {
 
         let workId = e.target.classList[2]
-        console.log(workId);
         const deleteUrl = `http://localhost:5678/api/works/${workId}`
 
 
@@ -146,10 +152,83 @@ const deleteElementDOM = () => {
 deleteElementDOM()
 
 
-btnModale.addEventListener('click', () => {
-    modale.classList.remove('active')
-})
+/* Fonction pour le passage du bouton de gris à vert */
 
+function checkFormFields() {
+    const titleValue = document.getElementById('title-work').value;
+    const categoryValue = document.getElementById('cat').value;
+    const imageFile = document.getElementById('file-selected').files[0];
+
+    // Vérification champs
+    const allFieldsFilled = titleValue.trim() !== '' && categoryValue.trim() !== '' && imageFile !== undefined;
+
+    // Update de la couleur
+    btnAddWork.style.backgroundColor = allFieldsFilled ? '#1D6154' : '#A7A7A7';
+}
+
+// Add event listeners pour les champs
+titleInput.addEventListener('input', checkFormFields);
+categorySelect.addEventListener('change', checkFormFields);
+photoInput.addEventListener('change', checkFormFields);
+
+
+
+/* File Reader */
+
+btnAddImage.addEventListener("change", previewFile);
+
+function previewFile() {
+
+    const fileExtensionRegex = /\.(jpg|png)$/i;
+
+    if (this.files.length === 0 || !fileExtensionRegex.test(this.files[0].name)) {
+        return;
+    }
+
+    const file = this.files[0];
+    const fileReader = new FileReader();
+
+
+    fileReader.readAsDataURL(file);
+    fileReader.addEventListener('load', (e) => displayImage(e, file));
+
+}
+
+
+function displayImage(e, file) {
+
+    const imgPreview = document.querySelector('.imgPreview')
+
+    /* Suppression de l'espace type d'ajout */
+
+    if (!imgPreview) {
+
+        newImgArea.style.visibility = "hidden";
+
+    }
+
+    /* Déclaration du nouvel espace d'ajout et ajout de l'image récupéré avec FileReader */
+
+    const containerImg = document.querySelector(".container-add")
+
+    const displayImage = `   
+        <figure class="imgPreview">
+        
+        <label for="file-selected"> <img src=${e.target.result} class=imgScale></label>
+        
+        
+        </figure>
+        `;
+
+    if (!imgPreview) {
+
+        containerImg.insertAdjacentHTML('afterbegin', displayImage)
+
+    } else {
+        imgPreview.remove()
+        containerImg.insertAdjacentHTML('afterbegin', displayImage)
+    }
+}
 
 
 /* Fonction d'envois d'un nouveau Work */
@@ -158,7 +237,7 @@ btnModale.addEventListener('click', () => {
 formGlobal.addEventListener('submit', (e) => {
 
     e.preventDefault()
-
+    const imgPreview = document.querySelector('.imgPreview')
     const image = document.getElementById('file-selected').files[0];
     const title = document.getElementById('title-work').value;
     const category = document.getElementById('cat').value;
@@ -192,26 +271,16 @@ formGlobal.addEventListener('submit', (e) => {
     if (image === "" || title === "" || category === "") {
         alert('Veuillez compléter tous les champs')
 
-    } else if (btnAddWork.classList.contains("grey-color")) {
-
-        btnAddWork.addEventListener("mouseover", () => {
-            btnAddWork.classList.remove('grey-color')
-            btnAddWork.classList.add('green-color')
-        })
-        return;
-
     } else {
         alert('Projet envoyé')
         addWork(formData)
+        imgPreview.remove()
+        newImgArea.style.visibility = "visible"
+        formGlobal.reset()
         modaleContainerEdit.classList.remove('active')
 
     }
 })
-
-
-
-
-
 
 
 
