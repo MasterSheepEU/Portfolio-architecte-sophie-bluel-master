@@ -233,9 +233,7 @@ function displayImage(e, file) {
     }
 }
 
-
 /* Fonction d'envois d'un nouveau Work */
-
 
 formGlobal.addEventListener('submit', (e) => {
 

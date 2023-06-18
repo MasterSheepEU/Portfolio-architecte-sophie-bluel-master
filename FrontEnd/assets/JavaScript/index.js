@@ -136,14 +136,6 @@ const modaleToggle = () => {
 
 }
 
-
-btnEdit.addEventListener('click', () => {
-
-    formGlobal.reset()
-
-})
-
-
 btnTrigger.forEach(trigger => trigger.addEventListener('click', modaleToggle))
 
 
@@ -206,6 +198,19 @@ const creatFiguresModale = (items) => {
 
 fetchWorks(creatFiguresModale)
 
+
+/* Nettoyage de la modale à chaque fois que l'on quitte celle-ci en cours d'édition */
+
+btnEdit.addEventListener('click', () => {
+
+    formGlobal.reset()
+
+    if (containerAdd.childNodes.length > 3) {
+        containerAdd.childNodes[1].remove()
+        newImgArea.style.visibility = "visible";
+
+    }
+})
 
 
 
