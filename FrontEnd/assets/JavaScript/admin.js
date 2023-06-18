@@ -138,12 +138,15 @@ const deleteElementDOM = () => {
                 }
             })
 
-            e.target.parentElement.remove();
+            if (confirm("Voulez-vous vraiment supprimer le projet ?")) {
 
-            cleanGallery()
-            fetchWorks(creatFiguresWork)
+                e.target.parentElement.remove();
+                cleanGallery()
+                fetchWorks(creatFiguresWork)
+                alert("Projet supprimé")
 
-            alert('Projet supprimé')
+            }
+
         }
 
     })
@@ -170,7 +173,6 @@ function checkFormFields() {
 titleInput.addEventListener('input', checkFormFields);
 categorySelect.addEventListener('change', checkFormFields);
 photoInput.addEventListener('change', checkFormFields);
-
 
 
 /* File Reader */
@@ -211,10 +213,11 @@ function displayImage(e, file) {
 
     const containerImg = document.querySelector(".container-add")
 
-    const displayImage = `   
+    const displayImage =
+        `   
         <figure class="imgPreview">
         
-        <label for="file-selected"> <img src=${e.target.result} class=imgScale></label>
+        <label for="file-selected" class=file-label> <img src=${e.target.result} class=imgScale></label>
         
         
         </figure>

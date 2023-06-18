@@ -15,6 +15,7 @@ const arrowReturn = document.querySelector(".fa-arrow-left")
 const containerAdd = document.querySelector('.container-add')
 const imgPreview = document.querySelector('.imgPreview')
 const imageFile = document.querySelector('.imgScale')
+const fileLabel = document.querySelector('.file-label')
 let indexFilter = 0
 
 
@@ -68,16 +69,19 @@ const creatFiguresWork = (items) => {
 
         if (item.categoryId === indexFilter || indexFilter === 0) {
 
-            const htmlContentWork = `
-            
-            <figure>
-            <img src=${item.imageUrl} alt=${item.title}>
-            <figcaption>${item.title}</figcaption>
-            </figure >
-            
-            `;
+            let newFigure = document.createElement('figure')
+            let newImg = document.createElement('img')
 
-            gallery.insertAdjacentHTML("beforeend", htmlContentWork);
+            newImg.src = `${item.imageUrl}`
+            newImg.alt = `${item.title}`
+
+            let newFigCaption = document.createElement('figcaption')
+            let contentFig = document.createTextNode(`${item.title}`)
+            newFigCaption.appendChild(contentFig)
+
+            newFigure.appendChild(newImg)
+            newFigure.appendChild(newFigCaption)
+            gallery.appendChild(newFigure)
 
         }
     }
@@ -91,11 +95,13 @@ const creatBtnCat = (categories) => {
 
     for (const categorie of categories) {
 
-        const htmlContentCate = `
-        <button class= filters-btn data-id=${categorie.id}>${categorie.name}</button>
-        `;
+        let button = document.createElement('button')
+        button.classList.add('filters-btn')
+        let buttonContent = document.createTextNode(`${categorie.name}`)
+        button.appendChild(buttonContent)
 
-        filters.insertAdjacentHTML("beforeend", htmlContentCate);
+        filters.appendChild(button)
+
     }
 
     /* Déclarations des bouttons des filtres */
@@ -128,11 +134,15 @@ fetchCategories(creatBtnCat);
 const modaleToggle = () => {
     modale.classList.toggle("active")
 
-    if (!modaleEdit.classList.contains('active')) {
-        formGlobal.reset()
-    }
-
 }
+
+
+btnEdit.addEventListener('click', () => {
+
+    formGlobal.reset()
+
+})
+
 
 btnTrigger.forEach(trigger => trigger.addEventListener('click', modaleToggle))
 
@@ -166,18 +176,29 @@ const creatFiguresModale = (items) => {
 
         if (item.categoryId === indexFilter || indexFilter === 0) {
 
-            const htmlContentWork = `
-            
-            <article class="work-img">
-                <i class="fa-solid fa-arrows-up-down-left-right"></i>
-                <i class="fa-solid fa-trash-can ${item.id}"></i>
-                <img src=${item.imageUrl} alt=${item.title}>
-                <span>éditer</span>
-            </article>
+            let newArticle = document.createElement('article')
+            newArticle.classList.add('work-img')
 
-            `;
+            let arrowCross = document.createElement('i')
+            arrowCross.classList.add('fa-solid')
+            arrowCross.classList.add('fa-arrows-up-down-left-right')
 
-            miniPictures.insertAdjacentHTML("beforeend", htmlContentWork);
+            newArticle.appendChild(arrowCross)
+
+            let trashIcon = document.createElement('i')
+            trashIcon.classList.add('fa-solid')
+            trashIcon.classList.add('fa-trash-can')
+            trashIcon.classList.add(`${item.id}`)
+
+            newArticle.appendChild(trashIcon)
+
+            let newImg = document.createElement('img')
+            newImg.src = `${item.imageUrl}`
+            newImg.alt = `${item.title}`
+
+            newArticle.appendChild(newImg)
+
+            miniPictures.appendChild(newArticle)
 
         }
     }

@@ -32,6 +32,7 @@ const login = async (email, password) => {
         return response.json();
     } catch (error) {
         console.error("Erreur:", error);
+        alert('Probléme technique, réessayer ultérieurement')
         return null;
     }
 };
